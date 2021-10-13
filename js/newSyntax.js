@@ -23,18 +23,36 @@ class UserClass{
     }
     this._age = age;
   }
-  getFullName(){
+  get fullName(){
     return `${this.name} ${this.sname}`;
   }
-  isAdult(){
+  set fullName(newFullName){
+    if(typeof newFullName !== 'string'){
+      throw new TypeError('Name must be string');
+    }
+    const arrFullName = newFullName.split(' ');
+    if(arrFullName.length !== 2){
+      throw new RangeError(`must be = 2. `)
+    }
+    this.name = arrFullName[0];
+    this.sname = arrFullName[1];
+  }
+  get isAdult(){
     return this.age>=ADULT_AGE;
   }
+
+  static createTestUser(){
+    return new UserClass('Test', 'Stest', 35);
+  }
 }
+
+
 
 const u2 = new UserClass('Tim', 'Le', 35);
 const u3 = new UserClass('Brus', 'Le', 75);
 u2.age = 48;//setter
 console.log(u2.age)//getter
+//console.log(u2._age)//НЕЛЬЗЯ ОБРАЩАТЬСЯ ВНЕ КЛАССА!!!!!!!!!!!!
 
 /*
 Создать класс Работник
@@ -48,9 +66,9 @@ class Woker{
     this.rate = rate;
     this.days = days;
   }
-  getSalary(){
+  get salary(){
     return this.rate*this.days;
   }
 }
 const w1 = new Woker('Elon','Musk',20,5);
-//console.log(w1.getSalary())
+//console.log(w1.salary)
