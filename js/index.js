@@ -1,34 +1,16 @@
 'use strict';
 
-const userName = 'Elon';
-const str = 'tO    BE    NoT    TO     Be';
 
-/*
-функция, которая приводит строку к такому кейсу
-'To Be Or Not To Be'
-
-*/
-
-
-function toCapitalizeCase(str){
-  const arrWords = str.split(' ');
-  const arrWordsUp = arrWords.map((word)=>{
-    if(word){
-      return word[0].toUpperCase() + word.substring(1).toLowerCase();
-    }
-  });
-  const newStr = arrWordsUp.join(' ')
-  return newStr;
+const pow = (num, exp)=>{
+  if(typeof num !=='number' || typeof exp !=='number'){
+    return new TypeError('Value must be number');
+  }
+  if(exp<0){
+    return new RangeError('Invalid value exp. Exp must >0');
+  }
+  if(exp===0){
+    return 1;
+  }
+  return num*pow(num, exp-1);
 }
-
-console.log(toCapitalizeCase(str))
-
-function toCapitalizeCase2(str){
-  return  str.split(' ')
-              .map((word)=>{
-                if(word){
-                  return word[0].toUpperCase() + word.substring(1).toLowerCase();
-                }
-              })
-              .join(' ');
-}
+console.log(pow(2, -2));
