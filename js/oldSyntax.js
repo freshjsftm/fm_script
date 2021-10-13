@@ -6,10 +6,10 @@ function User(name, sname, age){
   this.age = age;
 }
 
-User.amount = 0;
-User.createTest = function(){
-  return new User('anonim', 'anonimovich', 55);
-}
+// User.amount = 0;
+// User.createTest = function(){
+//   return new User('anonim', 'anonimovich', 55);
+// }
 
 function UserProto(){
   this.getFullName = function(){
@@ -21,3 +21,5 @@ User.prototype = new UserProto();
 
 
 const u1 = new User('Elon', 'Musk', 50);
+
+
