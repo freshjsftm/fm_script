@@ -1,30 +1,54 @@
 'use strict';
-class Animal{
-  constructor(name, amountOfLegs, type){
-    this.name = name;  //set name
-    this._amountOfLegs = amountOfLegs;
-    this._type = type;
+
+/*
+1. Инкапсуляция
+2. Наследование
+3. Полиморфизм
+*/
+class User{
+  constructor(name, sname, age){
+    this.name = name;
+    this.sname = sname;
+    this.age = age;
+    this.isBan = false;
   }
-  get name(){
-    return this._name;
+  getFullName(){
+    return `${this.name} ${this.sname}`;
   }
-  set name(value){
-    if(typeof value ==='string'){
-      return this._name = value;
-    }
-    throw new TypeError('Name must be error');
-  }
-  eat(){
-    return `${this._name} is eating`;
-  }
-  static isAnimal(obj){
-    return obj instanceof Animal;
+  static isUser(obj){
+    return obj instanceof User;
   }
 }
 
+class Moderator extends User{
+  constructor(name, sname, age, rule){
+    super(name, sname, age);
+    this.rule = rule;
+  }
+  addMessage(message){}
+  removeMessage(id){}
+}
 
+// создать класс Админ, который наследует юзера 
+// и имеет дополнительные методы: // забанить/разбанить юзера
 
-const cat1 = new Animal('Pushok', 4, 'cat');
-const dog1 = new Animal('Rem', 4, 'dog');
-cat1.name = 'Barsik';
+class Admin extends User{
+  constructor(name, sname, age, mail){
+    super(name, sname, age);
+    this.mail = mail;
+  }
+  toggleBan(obj){
+    if(User.isUser(obj)){
+      obj.isBan = !obj.isBan; //  true = !false
+    }
+  }
+}
+const user = new User('Test', 'Stest', 33);
+const admin = new Admin('Elon', 'Musk', 50, 'musk@gmail.com');
+const moder = new Moderator('Test', 'Stest', 33, true);
 
+class Owner extends Admin{
+
+}
+
+class God extends Owner{}
