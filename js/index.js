@@ -1,54 +1,61 @@
 'use strict';
-
 /*
 1. Инкапсуляция
-2. Наследование
+2. Наследование +
 3. Полиморфизм
 */
-class User{
-  constructor(name, sname, age){
+
+/*
+Белка
+имя, цвет
+прыгать
+
+Белка-летяга
+имя, цвет, максимальное расстояние полета
+прыгать, летать
+
+Белка-Пушкина
+имя, цвет, максимальное расстояние полета, массив песен
+прыгать, летать, танцевать, петь(поет все песни)
+*/
+
+class Squirrel{
+  constructor(name, color){
     this.name = name;
-    this.sname = sname;
-    this.age = age;
-    this.isBan = false;
+    this.color = color;
   }
-  getFullName(){
-    return `${this.name} ${this.sname}`;
+  jump(){
+    return 'i\'m jumping';
   }
-  static isUser(obj){
-    return obj instanceof User;
+}
+class SquirrelFly extends Squirrel{
+  constructor(name, color, maxDist){
+    super(name, color);
+    this.maxDist = maxDist;
+  }
+  fly(){
+    return `i'm flying ${this.maxDist}`;
+  }
+}
+class SquirrelMagic extends SquirrelFly{
+  constructor(name, color, maxDist, songs){
+    super(name, color, maxDist);
+    this.songs = songs;
+  }
+  sing(){
+    return `i'm sing: ${this.songs.join(',')}.`;
+  }
+  sing2(){
+    this.songs.forEach((song)=>{console.log(song)});
+  }
+  dance(){
+    return 'i\'m dancing';
   }
 }
 
-class Moderator extends User{
-  constructor(name, sname, age, rule){
-    super(name, sname, age);
-    this.rule = rule;
-  }
-  addMessage(message){}
-  removeMessage(id){}
-}
-
-// создать класс Админ, который наследует юзера 
-// и имеет дополнительные методы: // забанить/разбанить юзера
-
-class Admin extends User{
-  constructor(name, sname, age, mail){
-    super(name, sname, age);
-    this.mail = mail;
-  }
-  toggleBan(obj){
-    if(User.isUser(obj)){
-      obj.isBan = !obj.isBan; //  true = !false
-    }
-  }
-}
-const user = new User('Test', 'Stest', 33);
-const admin = new Admin('Elon', 'Musk', 50, 'musk@gmail.com');
-const moder = new Moderator('Test', 'Stest', 33, true);
-
-class Owner extends Admin{
-
-}
-
-class God extends Owner{}
+const pushkin = new SquirrelMagic('Magic','rainbow',888,['song 1', 'it\'s my love', 'i liked move']);
+pushkin.sing2();
+console.log(pushkin.sing());
+console.log(pushkin.dance());
+console.log(pushkin.fly());
+console.log(pushkin.jump());
