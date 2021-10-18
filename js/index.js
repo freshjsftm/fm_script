@@ -5,57 +5,51 @@
 3. Полиморфизм
 */
 
-/*
-Белка
-имя, цвет
-прыгать
-
-Белка-летяга
-имя, цвет, максимальное расстояние полета
-прыгать, летать
-
-Белка-Пушкина
-имя, цвет, максимальное расстояние полета, массив песен
-прыгать, летать, танцевать, петь(поет все песни)
-*/
-
-class Squirrel{
-  constructor(name, color){
+class Figure{
+  constructor(name){
     this.name = name;
-    this.color = color;
   }
-  jump(){
-    return 'i\'m jumping';
-  }
+  getArea(){}
 }
-class SquirrelFly extends Squirrel{
-  constructor(name, color, maxDist){
-    super(name, color);
-    this.maxDist = maxDist;
-  }
-  fly(){
-    return `i'm flying ${this.maxDist}`;
-  }
+
+class Rect extends Figure{
+  
 }
-class SquirrelMagic extends SquirrelFly{
-  constructor(name, color, maxDist, songs){
-    super(name, color, maxDist);
-    this.songs = songs;
+
+class Square extends Figure{
+  constructor(a){
+    super('Square');
+    this.a = a;
   }
-  sing(){
-    return `i'm sing: ${this.songs.join(',')}.`;
-  }
-  sing2(){
-    this.songs.forEach((song)=>{console.log(song)});
-  }
-  dance(){
-    return 'i\'m dancing';
+  getArea(){
+    return this.a*this.a;
   }
 }
 
-const pushkin = new SquirrelMagic('Magic','rainbow',888,['song 1', 'it\'s my love', 'i liked move']);
-pushkin.sing2();
-console.log(pushkin.sing());
-console.log(pushkin.dance());
-console.log(pushkin.fly());
-console.log(pushkin.jump());
+
+class Triangular extends Figure{
+  constructor(a,b,angle){
+    super('Triangular');
+    this.a = a;
+    this.b = b;
+    this.angle = angle;
+  }
+  getArea(){
+    return this.a*this.b*Math.sin(this.angle*(180/Math.PI));
+  }
+}
+class Circle extends Figure{
+  constructor(r){
+    super('Circle');
+    this.r = r;
+  }
+  getArea(){
+    return this.r*this.r*Math.PI;
+  }
+}
+const t = new Triangular(3,4, 45);
+const c = new Circle(10);
+
+function getAreaFigure(figure){
+  return figure.getArea();
+}
