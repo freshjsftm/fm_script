@@ -1,4 +1,16 @@
 'use strict';
+class MyArrayIterator{
+  constructor(myArr){
+    this.arr = myArr;
+    this.currentIndex = 0;
+  }
+  next(){
+    return {
+      value:this.arr[this.currentIndex++],
+      done:this.currentIndex > this.arr.length,
+    }
+  }
+}
 
 class MyArray{
   constructor(){
@@ -7,6 +19,12 @@ class MyArray{
       this.push(arguments[i]);
     }
   }
+  
+  [Symbol.iterator](){
+    return new MyArrayIterator(this);
+  }
+
+
   push(){ //1,2,3,4,5,8
     for (let i = 0; i < arguments.length; i++) {
       this[this.length++] = arguments[i];
@@ -84,4 +102,8 @@ class MyArray{
   static isMyArray(obj){
     return obj instanceof MyArray;
   }
+
+
+
 }
+
