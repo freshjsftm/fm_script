@@ -37,3 +37,25 @@ const stack1 = new Stack(3);
 
 
 
+/**
+ * 
+ * @param {string} str 
+ * return {boolean}
+ */
+const checkSequence = (str)=>{
+  const stack = new Stack(str.length);
+  for (const symbol of str) {
+    if(symbol==='('){
+      stack.push(symbol);
+    }
+    if(stack.isEmpty){
+      return false;
+    }
+    if(symbol===')' && stack.pick()==='('){
+      stack.pop();
+    }
+  }
+  return stack.isEmpty;
+}
+
+console.log(checkSequence('()()()()'));
