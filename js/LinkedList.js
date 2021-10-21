@@ -27,6 +27,7 @@ class ListItem{
     this._value = value;
   }
 }
+
 class LinkedList{
   constructor(...args){ //args === [1, true, {}, 'qwe', 2]
     this.length = 0;
@@ -53,8 +54,8 @@ class LinkedList{
   }
 }
 
-const list = new LinkedList(1, true, {}, 'qwe', 2);
-console.log(...list)
-for (const iterator of list) {
-  console.log(iterator)
-}
+// const list = new LinkedList(1, true, {}, 'qwe', 2);
+// console.log(...list)
+// for (const iterator of list) {
+//   console.log(iterator)
+// }
