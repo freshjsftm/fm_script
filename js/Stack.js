@@ -35,27 +35,39 @@ class Stack{
 }
 const stack1 = new Stack(3);
 
-
+const options = {
+  brackets:{
+    '(':')',
+    '[':']',
+    '{':'}',
+  },
+  isStrict: false,
+}
 
 /**
- * 
+ * @param {object} options
  * @param {string} str 
  * return {boolean}
  */
-const checkSequence = (str)=>{
+const checkSequence = (str, options)=>{
+  const brackets = options.brackets; 
+  const closesBrackets = Object.values(brackets);
   const stack = new Stack(str.length);
   for (const symbol of str) {
-    if(symbol==='('){
+    //debugger
+    if(brackets[symbol]){ 
       stack.push(symbol);
+      continue;
     }
-    if(stack.isEmpty){
-      return false;
-    }
-    if(symbol===')' && stack.pick()==='('){
+    const lastBracketOfStack = stack.pick();
+    const correctBracket = brackets[lastBracketOfStack];
+    if(symbol === correctBracket){ 
       stack.pop();
+    }else if(closesBrackets.includes(symbol)){
+      return false;
     }
   }
   return stack.isEmpty;
 }
 
-console.log(checkSequence('()()()()'));
+console.log(checkSequence('({[2.0+9]}/{44})', options));
