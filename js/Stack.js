@@ -49,8 +49,8 @@ const options = {
  * @param {string} str 
  * return {boolean}
  */
-const checkSequence = (str, options)=>{
-  const brackets = options.brackets; 
+const checkSequence = (str, {brackets})=>{
+  //const brackets = options.brackets; 
   const closesBrackets = Object.values(brackets);
   const stack = new Stack(str.length);
   for (const symbol of str) {

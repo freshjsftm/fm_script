@@ -1,5 +1,10 @@
 'use strict';
 //деструктуризация-способ создания переменной
+
+const getFullName=({privateInfo:{name, sname}})=>{
+  return `${name} ${sname}`;
+}
+
 const user = {
   privateInfo:{
     id:123,
@@ -23,19 +28,43 @@ const user = {
   profession:'director',
 }
 
+const {profession, ...restObject} = user;
+
+
+console.log(getFullName(user));
+
 const {
-  privateInfo:
-  {
-    name:userName,
-    sname:userSname,
-  },
   contactInfo:{
-    phone
+    adress:{
+      house
+    }, 
+    mail
   }
 } = user;
-console.log(userName);
-console.log(userSname);
-console.log(phone);
+
+
+
+
+const nums = [1,2,3,4,5];
+
+const [,,,,five] = nums;
+
+
+
+
+// const {
+//   privateInfo:
+//   {
+//     name:userName,
+//     sname:userSname,
+//   },
+//   contactInfo:{
+//     phone
+//   }
+// } = user;
+// console.log(userName);
+// console.log(userSname);
+// console.log(phone);
 
 
 // const dayBday = user.privateInfo.bday.day;
