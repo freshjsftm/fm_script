@@ -18,11 +18,14 @@ class Queue{
   unshift(){
     if(this.size){
       const deItem = this[this._head];
-      delete this[this._head++];
+      delete this[this._head];
+      this._head++;
       return deItem;
     }
   }
 }
+
+const q3 = new Queue(true,2,null);
 
 //функция сливает поочередно две очереди в одну новую
 const mergeQueues = (q1, q2) => {
