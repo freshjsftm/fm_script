@@ -23,19 +23,26 @@ dictionary.set('давече','daveche');
 
 const str = 'Город утка Плов давече Цукерберг смотреть Дочь дорога брать сестра кот';
 
-const translate = (str)=>{
-  const lowerCaseStr = str.toLowerCase();
-  const wordsArray = lowerCaseStr.split(' '); //город  утка
-  const wordsTranslatedArray = wordsArray.map((word)=>{
-    if(dictionary.has(word)){
-      return dictionary.get(word);
-    }
-    return word;
-  });
-  const translatedStr = wordsTranslatedArray.join(' ');
-  return translatedStr;
+const translate = (dictionary, str, separator = ' ')=>{
+  return str.toLowerCase()
+            .split(separator)
+            .map((word)=> (dictionary.has(word) ? dictionary.get(word):word))
+            .join(separator);
 }
 
-console.log(translate(str))
+//console.log(translate(dictionary, str))
+
+
+//const iteratorKeys = dictionary.keys();
+const keysArray = [...dictionary.keys()];
+// for (const iterator of dictionary.keys() ) {
+//   keysArray.push(iterator)
+// }
+
+//const iteratorValues = dictionary.values();
+const valuesArray = [...dictionary.values()];
+// for (const iterator of dictionary.values() ) {
+//   valuesArray.push(iterator)
+// }
 
 
