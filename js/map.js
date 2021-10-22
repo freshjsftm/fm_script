@@ -45,4 +45,27 @@ const valuesArray = [...dictionary.values()];
 //   valuesArray.push(iterator)
 // }
 
+const set1 = new Set();
+set1.add(7);
+set1.add(7);
+set1.add(7);
+set1.add('7');
+set1.add([7]);
+set1.add({7:7});
+set1.delete(7);
+
+const nums1 = [1,2,3,4,8,7,9];
+
+const nums2 = [2,4,6,8,8,8,7,9];
+
+const unique = [...new Set( [ 4,4,4,4,7,7,7,7 ])];
+
+//console.log(unique)
+
+set1.forEach((currentValue, currentKey)=>{
+  console.log(currentValue, currentKey);
+})
+
+
+
 
